@@ -1,0 +1,18 @@
+application: hover-mom
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /static
+  static_dir: static
+  
+- url: /.*
+  script: hovermom.wsgi.application
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'hovermom.settings'
+  
+builtins:
+- remote_api: on
