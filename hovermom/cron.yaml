@@ -1,0 +1,4 @@
+cron:
+- description: Check Ping Reports
+  url: /ping/tasks/check-pings
+  schedule: every 15 mins

@@ -2,6 +2,6 @@
 from google.appengine.ext import ndb
 
 class Ping (ndb.Model):
-  monitor = KeyProperty(kind='Monitor')
-  timestamp = ndb.DateTimeProperty(auto_now_add=True)
+  monitor = ndb.KeyProperty(kind='Monitor', required=True)
+  created = ndb.DateTimeProperty(auto_now_add=True)
   
