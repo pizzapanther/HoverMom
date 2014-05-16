@@ -47,7 +47,7 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
 USE_L10N = True
 
@@ -58,5 +58,33 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+  "django.core.context_processors.debug",
+  #"django.core.context_processors.i18n",
+  #"django.core.context_processors.media",
+  "django.core.context_processors.static",
+  "django.core.context_processors.tz",
+)
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGGING = {
+  'version': 1,
+  'disable_existing_loggers': False,
+  'handlers': {
+    'console': {
+      'level': 'DEBUG',
+      'class': 'logging.StreamHandler',
+    },
+  },
+  'loggers': {
+    'django.request': {
+      'handlers': ['console'],
+      'level': 'DEBUG',
+      'propagate': True,
+    },
+  },
+}
 
 from private.settings import *

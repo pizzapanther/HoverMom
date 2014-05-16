@@ -3,6 +3,7 @@ import logging
 
 from django import http
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 from google.appengine.ext import ndb
 from google.appengine.api import mail
@@ -11,6 +12,7 @@ from accounts.models import ApiKey
 from monitor.models import Monitor
 from ping.models import Ping
 
+@csrf_exempt
 def ping (request):
   akey = request.REQUEST.get('key', '')
   mstr = request.REQUEST.get('monitor', '')
@@ -31,7 +33,7 @@ def ping (request):
 def check_pings (request):
   for monitor in Monitor.query(Monitor.active == True).fetch():
     now = datetime.datetime.utcnow()
-    old = now - datetime.timedelta(minutes=5)
+    old = now - datetime.timedelta(minutes=6)
     
     ping = Ping.query(Ping.created >= old).get()
     kw = {

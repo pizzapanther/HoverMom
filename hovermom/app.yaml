@@ -8,7 +8,7 @@ handlers:
 - url: /static
   static_dir: static
   
-- url: /ping/tasks/*
+- url: /ping/tasks/.*
   script: hovermom.wsgi.application
   login: admin
   
